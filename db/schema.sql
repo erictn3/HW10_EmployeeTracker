@@ -5,7 +5,7 @@ CREATE DATABASE employees_db;
 USE employees_db;
 
 CREATE TABLE department (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, --make sql crreate ids for you with auto_increment, not null means it is not required
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, --make sql create ids for you with auto_increment, not null means it is not required
   name VARCHAR(30) NOT NULL
 )
 
@@ -21,6 +21,5 @@ CREATE TABLE employee (
   first_name VARCHAR(50),
   last_name VARCHAR(50),
   role_id INT NOT NULL,
-  manager_id INT NULL
 )
 
