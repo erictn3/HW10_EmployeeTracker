@@ -60,7 +60,7 @@ function menu() {
           viewAllDepartments();
           break;
         case "Add department":
-          addADepartment();
+          addDepartment();
           break;
         default:
           connection.end();
@@ -271,16 +271,14 @@ async function addRole() {
 
 //  ===================================================================================
 
-//  ===================================================================================
+async function viewAllDepartments() {
+  const departments = await getAllDepartments();
 
-// async function viewAllDepartments() {
-//   const departments = await getAllDepartments();
+  console.log("\n");
+  console.table(departments);
 
-//   console.log("\n");
-//   console.table(departments);
-
-//   menu();
-// }
+  menu();
+}
 
 //  ===================================================================================
 
@@ -292,9 +290,28 @@ async function getAllDepartments() {
 
   const data = await connection.query(queryString);
 
-  console.log("\n");
-  console.table(data);
+  // console.log("\n");
+  // console.table(data);
 
   return data;
   
 }
+
+//  ===================================================================================
+
+async function addDepartment() {
+  const department = await inquirer.prompt([
+    {
+      name: "name",
+      message: "What is the name of the department?"
+    }
+  ]);
+
+  const queryString =
+  "INSERT INTO department SET ?"; connection.query(queryString, [department.name]);
+
+  console.log(`Added ${department.name} to the database`);
+
+  menu();
+}
+
